@@ -1,8 +1,7 @@
-name: Generate The Code
+name: Code Lint
 
 on:
-  release:
-    types: [published]
+  push
 
 jobs:
   cancel-previous-workflow:
@@ -13,8 +12,8 @@ jobs:
       - uses: styfle/cancel-workflow-action@0.8.0
         with:
           access_token: ${{ github.token }}
-  build:
-    name: Brizy Protobuff Idl
+  lint:
+    name: Brizy Protobuff Idl Lint
     runs-on: self-hosted
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
@@ -26,14 +25,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: protobuf-idl
-
-      - name: Checkout Protogen PHP
-        uses: actions/checkout@v2
-        with:
-          ssh-key: ${{ secrets.ACCESS_KEY }}
-          repository: bagrinsergiu/brizy-protogen-php
-          path: protobuf-php-gen
-          fetch-depth: '1'
 
       - name: Load Evnrorment Data
         uses: falti/dotenv-action@master
@@ -61,19 +52,3 @@ jobs:
 
       - name: Lint
         run: protoc --lint_out=sort_imports:. protobuf-idl/src/*.proto
-
-      - name: Generate PHP Code
-        run: |
-          mkdir -p protobuf-php-gen/src
-          protoc --proto_path=protobuf-idl/src --php_out=protobuf-php-gen/src $(find protobuf-idl/src/ -iname "*.proto")
-
-      - name: Commit generated code
-        uses: EndBug/add-and-commit@v7 # You can change this to use a specific version
-        with:
-          cwd: './protobuf-php-gen'
-          add: 'src'
-          author_name: GithubActionUser
-          message: "Tag: ${{ github.event.release.tag_name }}; Message: ${{github.event.head_commit.message}}"
-          tag: ${{ github.event.release.tag_name }}
-
-
