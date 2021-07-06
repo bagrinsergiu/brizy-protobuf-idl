@@ -5,6 +5,4 @@ package brizy.message.doctrine;
 
 message DoctrineMessage {}
 
-message DoctrineMessage2 {}
-
 

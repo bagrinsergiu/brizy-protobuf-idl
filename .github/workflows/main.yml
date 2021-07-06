@@ -1,7 +1,6 @@
 name: Generate The Code
 
 on:
-  push:
   release:
     types: [published]
 
@@ -74,7 +73,7 @@ jobs:
           cwd: './protobuf-php-gen'
           add: 'src'
           author_name: GithubActionUser
-          message: ${{github.event.head_commit.message}}
-          tag: '${{github.event.GITHUB_REF}} --force'
+          message: "Tag: ${{ github.event.release.tag_name }}; Message: ${{github.event.head_commit.message}}"
+          tag: ${{ github.event.release.tag_name }}
 
 
