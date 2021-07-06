@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  protoc:
+    restart: on-failure
+    #    environment:
+    #        UID: ${UID}
+    #        GID: ${GID}
+    tty: true
+    stdin_open: true
+    build:
+      context: ./
+    volumes:
+      - ".:/brizy-protobuf"

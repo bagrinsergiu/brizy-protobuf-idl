@@ -1,0 +1,66 @@
+name: Generate The Code
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  cancel-previous-workflow:
+    name: Cancel previous workflow
+    runs-on: self-hosted
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
+  build:
+    name: Brizy Protobuff Idl
+    runs-on: self-hosted
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        php-versions:
+          - '7.4'
+    steps:
+      - name: Checkout Protobuff Idl
+        uses: actions/checkout@v2
+        with:
+          path: protobuf-idl
+
+      - name: Checkout Protogen PHP
+        uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.ACCESS_KEY }}
+          repository: 'git@github.com:bagrinsergiu/brizy-protogen-php.git'
+          path: protobuf-php-gen
+
+      - name: Load Evnrorment Data
+        uses: falti/dotenv-action@master
+        id: env
+        with:
+          path: protobuf-idl/.env
+
+      - name: Setup protobuf executable
+        shell: bash
+        run: |
+          wget https://github.com/protocolbuffers/protobuf/releases/download/v${{ steps.env.outputs.protobuf_version }}/protoc-${{ steps.env.outputs.protobuf_version }}-linux-x86_64.zip
+          unzip -d ./protoc protoc-${{ steps.env.outputs.protobuf_version }}-linux-x86_64.zip
+          sudo cp -r protoc/include/google /usr/local/include/
+          sudo cp -r protoc/bin/protoc /usr/local/bin
+          sudo chmod +x /usr/local/bin/protoc
+          rm -rf protoc
+
+          wget https://github.com/ckaznocha/protoc-gen-lint/releases/download/v${{ steps.env.outputs.protobuf_linter_version }}/protoc-gen-lint_linux_amd64.zip
+          unzip -d ./protoc-gen-lint protoc-gen-lint_linux_amd64
+          sudo cp -r protoc-gen-lint/protoc-gen-lint /usr/local/bin
+          sudo chmod +x /usr/local/bin/protoc-gen-lint
+          rm -rf ./protoc-gen-lint
+
+      - name: Lint
+        run: protoc --lint_out=sort_imports:. protobuf-idl/src/*.proto
+
+      - name: Generate PHP Code
+        run: protoc --proto_path=protobuf-idl/src --php_out=protobuf-php-gen/src $(find protobuf-idl/src -iname "*.proto")
+
+
