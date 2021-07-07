@@ -65,6 +65,7 @@ jobs:
       - name: Generate PHP Code
         run: |
           mkdir -p protobuf-php-gen/build
+          rm -rf protobuf-php-gen/build/*
           protoc -I=protobuf-idl/src --php_out=protobuf-php-gen/build $(find protobuf-idl/src/ -iname "*.proto")
 
       - name: Commit generated code
