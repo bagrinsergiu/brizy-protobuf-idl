@@ -1,8 +1,25 @@
 syntax = "proto3";
 
-package brizy.message.doctrine;
+package brizy.doctrine;
 
 
-message DoctrineMessage {}
+message DoctrineMessage {
+  enum DoctrineEventType {
+      PRE_REMOVE =  0;
+      POST_REMOVE = 1;
+      PRE_PERSIST = 2;
+      POST_PERSIST =  3;
+      PRE_UPDATE =  4;
+      POST_UPDATE = 5;
+      POST_LOAD = 6;
+      PRE_FLUSH = 7;
+      ON_FLUSH =  8;
+      POST_FLUSH =  9;
+      ON_CLEAR =  10;
+  }
 
-
+  int32 descriminator=1;
+  DoctrineEventType event = 2; // event triggered by the doctrine
+  int32 entity_id = 3; // entity id
+  string entity_snapshot = 4; // the entity json encoded
+}
