@@ -1,7 +1,6 @@
 name: Generate The Code
 
 on:
-  push:
   release:
     types: [published]
 
