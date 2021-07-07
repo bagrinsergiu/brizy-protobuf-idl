@@ -1,7 +1,8 @@
 syntax = "proto3";
 
-package brizy.doctrine;
+package brizyMessage.doctrine;
 
+import "message.proto";
 
 message DoctrineMessage {
   enum DoctrineEventType {
@@ -18,7 +19,7 @@ message DoctrineMessage {
       ON_CLEAR =  10;
   }
 
-  int32 descriminator=1;
+  Message.DescriminatorType descriminator = 1;
   DoctrineEventType event = 2; // event triggered by the doctrine
   int32 entity_id = 3; // entity id
   string entity_snapshot = 4; // the entity json encoded

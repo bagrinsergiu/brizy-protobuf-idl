@@ -1,7 +1,7 @@
 name: Code Lint
 
 on:
-  push
+  - push
 
 jobs:
   cancel-previous-workflow:
@@ -51,4 +51,4 @@ jobs:
           rm -rf ./protoc-gen-lint
 
       - name: Lint
-        run: protoc --lint_out=sort_imports:. protobuf-idl/src/*.proto
+        run: protoc -I=protobuf-idl/src --lint_out=sort_imports:. protobuf-idl/src/*.proto

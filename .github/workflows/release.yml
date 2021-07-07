@@ -1,6 +1,7 @@
 name: Generate The Code
 
 on:
+  push:
   release:
     types: [published]
 
@@ -64,8 +65,10 @@ jobs:
 
       - name: Generate PHP Code
         run: |
-          mkdir -p protobuf-php-gen/src
-          protoc --proto_path=protobuf-idl/src --php_out=protobuf-php-gen/src $(find protobuf-idl/src/ -iname "*.proto")
+          mkdir -p protobuf-php-gen/temp
+          protoc --proto_path=protobuf-idl/src --php_out=protobuf-php-gen/temp $(find protobuf-idl/src/ -iname "*.proto")
+          cp -R protobuf-php-gen/temp/BrizyMessage/ ./protobuf-php-gen/src
+          rm -rf protobuf-php-gen/temp
 
       - name: Commit generated code
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version

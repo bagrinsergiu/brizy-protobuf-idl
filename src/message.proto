@@ -1,7 +1,14 @@
 syntax = "proto3";
 
-package brizy;
+package brizyMessage;
 
 message Message {
-  int32 descriminator=1;
+
+  enum DescriminatorType {
+    NONE = 0;
+    DOCTRINE_MESSAGE = 1;
+  }
+
+
+  DescriminatorType descriminator = 1;
 }
