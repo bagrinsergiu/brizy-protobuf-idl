@@ -7,6 +7,7 @@ message Message {
   enum DescriminatorType {
     NONE = 0;
     DOCTRINE_MESSAGE = 1;
+    TRANSLATE_ENTITY_MESSAGE = 2;
   }
 
 

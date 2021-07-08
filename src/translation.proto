@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package brizyMessage.translation;
+
+import "message.proto";
+
+message TranslateEntityMessage {
+
+  Message.DescriminatorType descriminator = 1;
+  string project_id = 2;
+  string entity_id = 3;
+  string entity_url = 4;
+}

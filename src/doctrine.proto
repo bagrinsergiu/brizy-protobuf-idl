@@ -4,7 +4,7 @@ package brizyMessage.doctrine;
 
 import "message.proto";
 
-message DoctrineMessage {
+message DoctrineEventMessage {
   enum DoctrineEventType {
       PRE_REMOVE =  0;
       POST_REMOVE = 1;
@@ -23,8 +23,4 @@ message DoctrineMessage {
   DoctrineEventType event = 2; // event triggered by the doctrine
   int32 entity_id = 3; // entity id
   string entity_snapshot = 4; // the entity json encoded
-}
-
-message DummyMessage {
-  Message.DescriminatorType descriminator = 1;
 }
