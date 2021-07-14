@@ -10,6 +10,7 @@ message TranslateEntityMessage {
   int32 entity_id = 3;
   string entity_iri = 4;
   string project_iri = 5;
+  string entity_url = 6;
 }
 
 
