@@ -16,6 +16,7 @@ message TranslateEntityMessage {
 
 message RemoveEntityTranslationMessage {
   Message.DescriminatorType descriminator = 1;
-  string project_id = 2;
-  string entity_id = 3;
+  int32 project_id = 2;
+  string entity_iri = 3;
+  string project_iri = 4;
 }
