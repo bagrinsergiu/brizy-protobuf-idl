@@ -9,6 +9,7 @@ message Message {
     DOCTRINE_MESSAGE = 1;
     TRANSLATE_ENTITY_MESSAGE = 2;
     REMOVE_ENTITY_TRANSLATION_MESSAGE = 3;
+    NOTIFICATION_MESSAGE = 4;
   }
   DescriminatorType descriminator = 1;
 }
