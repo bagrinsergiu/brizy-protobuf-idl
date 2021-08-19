@@ -6,7 +6,7 @@ import "message.proto";
 
 message NotificationMessage {
   Message.DescriminatorType descriminator = 1;
-  string event_name = 2;
+  string notification_name = 2;
   string object = 3;
   string email = 4;
   string access_token = 5;
