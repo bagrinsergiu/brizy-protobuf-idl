@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package brizyMessage.notification;
+
+import "message.proto";
+
+message NotificationMessage {
+  Message.DescriminatorType descriminator = 1;
+  string event_name = 2;
+  string object = 3;
+  string email = 4;
+  string access_token = 5;
+  int32 project = 6;
+}
