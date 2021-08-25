@@ -23,4 +23,5 @@ message DoctrineEventMessage {
   DoctrineEventType event = 2; // event triggered by the doctrine
   int32 entity_id = 3; // entity id
   string entity_snapshot = 4; // the entity json encoded
+  string entity_class = 5; // entity name
 }
