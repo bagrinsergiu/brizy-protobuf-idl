@@ -9,6 +9,7 @@ message TranslateEntityMessage {
   reserved 4;
   string entity_iri = 2;
   string project_iri = 3;
+  string access_token = 5;
 }
 
 
