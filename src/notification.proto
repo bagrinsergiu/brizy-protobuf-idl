@@ -11,4 +11,5 @@ message NotificationMessage {
   string email = 4;
   string access_token = 5;
   int32 project = 6;
+  int32 object_id = 7;
 }
