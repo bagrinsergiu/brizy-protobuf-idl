@@ -9,7 +9,8 @@ message TranslateEntityMessage {
   reserved 4;
   string entity_iri = 2;
   string project_iri = 3;
-  string access_token = 5;
+  string cloud_access_token = 5;
+  string brziy_api_access_token = 6;
 }
 
 
