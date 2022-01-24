@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package brizyMessage.cloud;
+
+import "message.proto";
+
+message CreateUserMessage {
+  Message.DescriminatorType descriminator = 1;
+  string user_id = 2;
+}
+
+message DeleteUserMessage {
+  Message.DescriminatorType descriminator = 1;
+  string user_id = 2;
+}
+
+message CreateProjectMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_id = 2;
+}
+
+message DeleteProjectMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_id = 2;
+}
