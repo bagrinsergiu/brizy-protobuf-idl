@@ -4,6 +4,12 @@ package brizyMessage.translation;
 
 import "message.proto";
 
+enum TranslateEntity {
+  UNKNOWN =  0;
+  COLLECTION = 1;
+  CUSTOMER = 2;
+}
+
 message TranslateEntityMessage {
   Message.DescriminatorType descriminator = 1;
   reserved 4;
@@ -11,12 +17,12 @@ message TranslateEntityMessage {
   string project_iri = 3;
   string cloud_access_token = 5;
   string brziy_api_access_token = 6;
-  string entity_class = 7;
+  TranslateEntity entity_class = 7;
 }
 
 message RemoveEntityTranslationMessage {
   Message.DescriminatorType descriminator = 1;
   string entity_iri = 2;
   string project_iri = 3;
-  string entity_class = 4;
+  TranslateEntity entity_class = 4;
 }
