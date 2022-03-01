@@ -27,6 +27,14 @@ jobs:
         with:
           path: protobuf-idl
 
+      - name: Checkout Protogen PHP
+        uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.ACCESS_KEY }}
+          repository: bagrinsergiu/brizy-protogen-php
+          path: protobuf-php-gen
+          fetch-depth: '1'
+
       - name: Load Evnrorment Data
         uses: falti/dotenv-action@master
         id: env
@@ -50,6 +58,9 @@ jobs:
           sudo cp -r protoc-gen-lint/protoc-gen-lint /usr/local/bin
           sudo chmod +x /usr/local/bin/protoc-gen-lint
           rm -rf ./protoc-gen-lint
+
+      - name: Lint
+        run: protoc -I=protobuf-idl/src --lint_out=sort_imports:. protobuf-idl/src/*.proto
 
       - name: Generate PHP Code
         run: |
