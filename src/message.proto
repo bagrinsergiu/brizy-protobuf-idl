@@ -14,6 +14,7 @@ message Message {
     CLOUD_DELETE_USER_MESSAGE = 6;
     CLOUD_CREATE_PROJECT_MESSAGE = 7;
     CLOUD_DELETE_PROJECT_MESSAGE = 8;
+    CLOUD_CLONE_PROJECT_MESSAGE = 9;
   }
   DescriminatorType descriminator = 1;
 }
