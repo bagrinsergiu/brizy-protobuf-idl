@@ -34,12 +34,16 @@ message CloneProjectMessage {
 
 message CloneCollectionItemMessage {
   Message.DescriminatorType descriminator = 1;
-  string source_item_iri = 2;
-  string target_item_iri = 3;
+  string source_project_iri = 2;
+  string target_project_iri = 3;
+  string source_item_iri = 4;
+  string target_item_iri = 5;
 }
 
 message CloneCustomerMessage {
   Message.DescriminatorType descriminator = 1;
-  string source_customer_iri = 2;
-  string target_customer_iri = 3;
+  string source_project_iri = 2;
+  string target_project_iri = 3;
+  string source_customer_iri = 4;
+  string target_customer_iri = 5;
 }
