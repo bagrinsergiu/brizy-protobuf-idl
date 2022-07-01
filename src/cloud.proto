@@ -30,3 +30,16 @@ message CloneProjectMessage {
   string target_project_id = 3;
   string brziy_api_access_token = 4;
 }
+
+
+message CloneCollectionItemMessage {
+  Message.DescriminatorType descriminator = 1;
+  string source_item_iri = 2;
+  string target_item_iri = 3;
+}
+
+message CloneCustomerMessage {
+  Message.DescriminatorType descriminator = 1;
+  string source_customer_iri = 2;
+  string target_customer_iri = 3;
+}
