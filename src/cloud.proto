@@ -26,8 +26,8 @@ message DeleteProjectMessage {
 
 message CloneProjectMessage {
   Message.DescriminatorType descriminator = 1;
-  string source_project_id = 2;
-  string target_project_id = 3;
+  string source_project_iri = 2;
+  string target_project_iri = 3;
   string brziy_api_access_token = 4;
 }
 
