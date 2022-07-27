@@ -38,6 +38,7 @@ message CloneCollectionItemMessage {
   string target_project_iri = 3;
   string source_item_iri = 4;
   string target_item_iri = 5;
+  string brziy_api_access_token = 6;
 }
 
 message CloneCustomerMessage {
@@ -46,4 +47,5 @@ message CloneCustomerMessage {
   string target_project_iri = 3;
   string source_customer_iri = 4;
   string target_customer_iri = 5;
+  string brziy_api_access_token = 6;
 }
