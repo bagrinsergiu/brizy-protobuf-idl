@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package brizyMessage.brizy;
+
+import "message.proto";
+
+message CreateCollectionItemMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
+
+message UpdateCollectionItemMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
+
+message DeleteCollectionItemMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
