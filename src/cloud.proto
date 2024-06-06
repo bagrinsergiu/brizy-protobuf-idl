@@ -49,3 +49,7 @@ message CloneCustomerMessage {
   string target_customer_iri = 5;
   string brziy_api_access_token = 6;
 }
+
+message ClearPlatformCacheMessage {
+  Message.DescriminatorType descriminator = 1;
+}
