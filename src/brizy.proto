@@ -27,3 +27,52 @@ message DeleteCollectionItemMessage {
   string brziy_api_access_token = 4;
   string user_id = 5;
 }
+
+message CreateCollectionTypeMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
+
+message UpdateCollectionTypeMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
+
+message DeleteCollectionTypeMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
+
+message CreateCustomerMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
+
+message UpdateCustomerMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
+
+message DeleteCustomerMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+}
+
