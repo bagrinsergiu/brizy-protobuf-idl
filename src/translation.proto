@@ -8,6 +8,7 @@ enum TranslateEntity {
   UNKNOWN =  0;
   COLLECTION = 1;
   CUSTOMER = 2;
+  METAFIELD = 3;
 }
 
 message TranslateEntityMessage {
