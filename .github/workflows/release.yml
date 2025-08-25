@@ -96,7 +96,6 @@ jobs:
           npx buf generate --template ./protobuf-idl/buf.gen.yaml ./protobuf-idl/src
           cd protobuf-ts-gen
           npm run build
-          npm version $CLEAN_VERSION
 
       - name: Commit PHP generated code
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version
