@@ -93,7 +93,7 @@ jobs:
         run: |
           VERSION="${{ github.event.release.tag_name }}"
           CLEAN_VERSION="${VERSION#v}"
-          npx buf generate --template buf.gen.yaml ./protobuf-idl --output ./protobuf-ts-gen
+          npx buf generate --template ./protobuf-idl/buf.gen.yaml ./protobuf-idl/src
           cd protobuf-ts-gen
           npm run build
           npm version $CLEAN_VERSION
