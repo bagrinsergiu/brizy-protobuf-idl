@@ -1,3 +1,7 @@
 ./build
 .idea
 /build/*/
+package.json
+package-lock.json
+protobuf-ts-gen/*
+/node_modules/

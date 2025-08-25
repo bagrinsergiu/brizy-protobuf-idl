@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         php-versions:
-          - '7.4'
+          - "7.4"
     steps:
       - name: Checkout Protobuff Idl
         uses: actions/checkout@v2
@@ -33,13 +33,33 @@ jobs:
           ssh-key: ${{ secrets.ACCESS_KEY }}
           repository: bagrinsergiu/brizy-protogen-php
           path: protobuf-php-gen
-          fetch-depth: '1'
+          fetch-depth: "1"
+
+      - name: Checkout Protogen TS
+        uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.ACCESS_KEY }}
+          repository: bagrinsergiu/brizy-protogen-ts
+          path: protobuf-ts-gen
+          fetch-depth: "1"
 
       - name: Load Evnrorment Data
         uses: falti/dotenv-action@master
         id: env
         with:
           path: protobuf-idl/.env
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.env.outputs.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          npm install @bufbuild/protobuf @bufbuild/buf @bufbuild/protoc-gen-es
+          cd protobuf-ts-gen
+          npm install
 
       - name: Setup protobuf executable
         shell: bash
@@ -68,13 +88,30 @@ jobs:
           rm -rf protobuf-php-gen/build/*
           protoc -I=protobuf-idl/src --php_out=protobuf-php-gen/build $(find protobuf-idl/src/ -iname "*.proto")
 
-      - name: Commit generated code
+      - name: Generate TS Code
+        run: |
+          # Remove 'v' prefix from release tag
+          VERSION="${{ github.event.release.tag_name }}"
+          CLEAN_VERSION="${VERSION#v}"
+          npx buf generate
+          cd protobuf-ts-gen
+          npm run build
+          npm version $CLEAN_VERSION
+
+      - name: Commit PHP generated code
         uses: EndBug/add-and-commit@v7 # You can change this to use a specific version
         with:
           cwd: ./protobuf-php-gen
           branch: master
-          add: '.'
-          message: 'Tag: ${{ github.event.release.tag_name }} Message: ${{github.event.release.body}}'
+          add: "."
+          message: "Tag: ${{ github.event.release.tag_name }} Message: ${{github.event.release.body}}"
           tag: ${{ github.event.release.tag_name }}
 
-
+      - name: Commit TS generated code
+        uses: EndBug/add-and-commit@v7
+        with:
+          cwd: ./protobuf-ts-gen
+          branch: master
+          add: "."
+          message: "Tag: ${{ github.event.release.tag_name }} Message: ${{github.event.release.body}}"
+          tag: ${{ github.event.release.tag_name }}
