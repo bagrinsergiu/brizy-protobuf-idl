@@ -91,8 +91,6 @@ jobs:
 
       - name: Generate TS Code
         run: |
-          VERSION="${{ github.event.release.tag_name }}"
-          CLEAN_VERSION="${VERSION#v}"
           npx buf generate --template ./protobuf-idl/buf.gen.yaml ./protobuf-idl/src
           cd protobuf-ts-gen
           npm run build
@@ -110,7 +108,7 @@ jobs:
         uses: EndBug/add-and-commit@v7
         with:
           cwd: ./protobuf-ts-gen
-          branch: master
+          branch: main
           add: "."
           message: "Tag: ${{ github.event.release.tag_name }} Message: ${{github.event.release.body}}"
           tag: ${{ github.event.release.tag_name }}
