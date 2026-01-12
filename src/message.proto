@@ -33,6 +33,7 @@ message Message {
     UPDATE_SYMBOL_MESSAGE = 23;
     DELETE_SYMBOL_MESSAGE = 24;
 
+    PUBLISH_SCHEDULED_COLLECTION_ITEM_MESSAGE = 25;
 
   }
   DescriminatorType descriminator = 1;

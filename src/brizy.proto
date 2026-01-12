@@ -22,6 +22,14 @@ message UpdateCollectionItemMessage {
   string cloud_access_token = 6;
 }
 
+message PublishScheduledCollectionItemMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  int64 publish_date_timestamp = 3;
+}
+
+
 message DeleteCollectionItemMessage {
   Message.DescriminatorType descriminator = 1;
   string project_iri = 2;
