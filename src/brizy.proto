@@ -22,7 +22,7 @@ message UpdateCollectionItemMessage {
   string cloud_access_token = 6;
 }
 
-message PublishScheduledCollectionItemMessage {
+message PublishedScheduledCollectionItemMessage {
   Message.DescriminatorType descriminator = 1;
   string project_iri = 2;
   string entity_iri = 3;
