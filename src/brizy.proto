@@ -26,7 +26,7 @@ message PublishScheduledCollectionItemMessage {
   Message.DescriminatorType descriminator = 1;
   string project_iri = 2;
   string entity_iri = 3;
-  int64 publish_date_timestamp = 3;
+  int64 publish_date_timestamp = 4;
 }
 
 
