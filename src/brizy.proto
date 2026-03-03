@@ -120,3 +120,31 @@ message DeleteSymbolMessage {
   string cloud_access_token = 6;
 }
 
+
+message CreateGlobalBlockMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+  string cloud_access_token = 6;
+}
+
+message UpdateGlobalBlockMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+  string cloud_access_token = 6;
+}
+
+message DeleteGlobalBlockMessage {
+  Message.DescriminatorType descriminator = 1;
+  string project_iri = 2;
+  string entity_iri = 3;
+  string brziy_api_access_token = 4;
+  string user_id = 5;
+  string cloud_access_token = 6;
+}
+

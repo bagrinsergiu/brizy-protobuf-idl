@@ -35,6 +35,11 @@ message Message {
 
     PUBLISH_SCHEDULED_COLLECTION_ITEM_MESSAGE = 25;
 
+    CREATE_GLOBAL_BLOCK_MESSAGE = 26;
+    UPDATE_GLOBAL_BLOCK_MESSAGE = 27;
+    DELETE_GLOBAL_BLOCK_MESSAGE = 28;
+
+
   }
   DescriminatorType descriminator = 1;
 }
